@@ -110,6 +110,9 @@ function RestaurantsList(props) {
                             cuisines.map(cuisine => (<option value={cuisine} key={cuisine}>{cuisine.substr(0, 20)}</option>))
                         }
                     </select>
+                    <div className="input-group-append">
+                        <button className="btn btn-outline-secondary" type="button" onClick={findByCuisine}>Search</button>
+                    </div>
                 </div>
             </div>
 
