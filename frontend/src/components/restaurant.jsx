@@ -36,10 +36,11 @@ function Restaurant(props) {
         try {
             await RestaurantDataService.deleteReview(reviewId, userId);
             setRestaurant(prevState => {
+                debugger
                 prevState.reviews.splice(index, 1);
-                return {
+                return ({
                     ...prevState
-                }
+                })
             })
         } catch (error) {
             console.error(error);
@@ -62,7 +63,6 @@ function Restaurant(props) {
                             {
                                 restaurant.reviews.length > 0 ? (
                                     restaurant.reviews.map((review, index) => {
-                                        console.log(review)
                                         return (<div className="col-lg-4 pb-1" key={index}>
                                             <div className="card">
                                                 <div className="card-body">
@@ -74,7 +74,7 @@ function Restaurant(props) {
                                                     {
                                                         props.user && props.user.id === review.user_id &&
                                                         <div className="row">
-                                                            <a onClick={() => deleteReview(review._id, props.user.id, index)} className="btn btn-primary col-lg-5 mx-1 mb-1">Delete</a>
+                                                            <button type="button" onClick={() => deleteReview(review._id, props.user.id, index)} className="btn btn-primary col-lg-5 mx-1 mb-1">Delete</button>
                                                             <Link to={{
                                                                 pathname: `/restaurants/${id}/review`,
                                                                 state: {
